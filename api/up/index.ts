@@ -13,7 +13,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const body = (await json(req)) as UpWebhookEvent;
   const type = body.data.attributes.eventType;
-  console.log(type, body);
+  // console.log(type, body);
 
   switch (type) {
     case "PING":
