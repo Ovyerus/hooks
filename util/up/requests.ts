@@ -2,7 +2,7 @@ import bent from "bent";
 import { UpTransaction } from ".";
 
 // https://api.up.com.au/api/v1/transactions
-const base = "https://api.up.com.au/api/v1";
+const base = "https://api.up.com.au/api/v1/";
 const post = bent("json", "POST");
 
 const getUp = bent(base, "json", {
