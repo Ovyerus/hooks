@@ -2,6 +2,7 @@ import { NowRequest, NowResponse } from "@vercel/node";
 import { json } from "micro";
 
 import { isSecureReq, UpWebhookEvent } from "../../util/up";
+import pingHandler from "../../util/up/pingHandler";
 
 export default async (req: NowRequest, res: NowResponse) => {
   if (req.method === "GET") return res.status(200).send("OK");
@@ -13,5 +14,11 @@ export default async (req: NowRequest, res: NowResponse) => {
   const type = body.data.attributes.eventType;
   console.log(type, body);
 
-  res.send("OK");
+  switch (type) {
+    case "PING":
+      return await pingHandler(req, res);
+    default:
+      console.log(`dunno ${type}`);
+      return res.send("OK");
+  }
 };
