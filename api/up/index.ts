@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 
-import { isSecureReq } from "~util/up";
+import { isSecureReq } from "../../util/up";
 
 export default async (req: NowRequest, res: NowResponse) => {
   if (req.method === "GET") return res.status(200).send("OK");
