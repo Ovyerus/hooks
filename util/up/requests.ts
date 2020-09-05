@@ -16,5 +16,8 @@ export const sendWebhook = (content: string) =>
     username: "Up",
   });
 
-export const getTransaction = (id: string): Promise<UpTransaction> =>
-  getUp(`transactions/${id}`) as any;
+export const getTransaction = (id: string): Promise<UpTransaction> => {
+  console.log("id", id);
+  console.log("to", `${base}/transactions/${id}`);
+  return getUp(`transactions/${id}`) as any;
+};
