@@ -3,14 +3,14 @@ import { UpTransactionResponse } from ".";
 
 // https://api.up.com.au/api/v1/transactions
 const base = "https://api.up.com.au/api/v1/";
-const post = bent("json", "POST", 200, 201, 202, 204);
+const postWebhook = bent("POST", 200, 201, 202, 204);
 
 const getUp = bent(base, "json", {
   Authorization: `Bearer ${process.env.UP_TOKEN}`,
 });
 
 export const sendWebhook = (content: string) =>
-  post(process.env.DISCORD_WEBHOOK, {
+  postWebhook(process.env.DISCORD_WEBHOOK, {
     content,
     avatar_url: "https://up.com.au/favicon.ico",
     username: "Up",
