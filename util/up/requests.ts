@@ -1,5 +1,5 @@
 import bent from "bent";
-import { UpTransaction } from ".";
+import { UpTransactionResponse } from ".";
 
 // https://api.up.com.au/api/v1/transactions
 const base = "https://api.up.com.au/api/v1/";
@@ -16,8 +16,6 @@ export const sendWebhook = (content: string) =>
     username: "Up",
   });
 
-export const getTransaction = (id: string): Promise<UpTransaction> => {
-  console.log("id", id);
-  console.log("to", `${base}/transactions/${id}`);
+export const getTransaction = (id: string): Promise<UpTransactionResponse> => {
   return getUp(`transactions/${id}`) as any;
 };

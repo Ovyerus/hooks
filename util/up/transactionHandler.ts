@@ -6,9 +6,8 @@ import util from "util";
 
 export default async (req: NowRequest, res: NowResponse) => {
   const body = (await json(req)) as UpWebhookEvent;
-  console.log(util.inspect(body.data.relationships, { depth: 10 }));
   const transId = body.data.relationships.transaction.data.id;
-  const transaction = await getTransaction(transId);
+  const { data: transaction } = await getTransaction(transId);
 
   const { status, description } = transaction.attributes;
   const tags = transaction.relationships.tags.data.map((t) => t.id).join(", ");

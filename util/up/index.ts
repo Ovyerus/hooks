@@ -102,3 +102,7 @@ export interface UpTransaction {
     self: string;
   };
 }
+
+export interface UpTransactionResponse {
+  data: UpTransaction;
+}
