@@ -3,7 +3,7 @@ import { UpTransactionResponse } from ".";
 
 // https://api.up.com.au/api/v1/transactions
 const base = "https://api.up.com.au/api/v1/";
-const post = bent("json", "POST");
+const post = bent("json", "POST", 200, 201, 202, 204);
 
 const getUp = bent(base, "json", {
   Authorization: `Bearer ${process.env.UP_TOKEN}`,
