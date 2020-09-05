@@ -11,9 +11,9 @@ export default async (req: NowRequest, res: NowResponse) => {
   const { status, description } = transaction.attributes;
   const tags = transaction.relationships.tags.data.map((t) => t.id).join(", ");
 
+  console.log(transaction.id, description, status);
   if (status === "HELD" || description === "Round Up") return res.send("OK");
 
-  console.log(transaction.id, description, status);
   await sendWebhook(
     `<@99742488666845184> transaction with **${description}** settled.\nTags: \`${tags}\``
   );
