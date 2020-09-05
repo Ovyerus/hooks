@@ -22,13 +22,27 @@ export type UpWebhookEventType =
   | "TRANSACTION_DELETED"
   | "PING";
 
-export interface UpRelationship<T extends string = string> {
+export type UpTransactionStatus = "HELD" | "SETTLED";
+
+export interface Relationship<T extends string = string> {
   data: {
     type: T;
     id: string;
   };
   links?: {
-    related: string;
+    related?: string;
+    self?: string;
+  };
+}
+
+export interface MultiRelationship<T extends string = string> {
+  data: Array<{
+    type: T;
+    id: string;
+  }>;
+  links?: {
+    related?: string;
+    self?: string;
   };
 }
 
@@ -41,8 +55,50 @@ export interface UpWebhookEvent {
       createdAt: string;
     };
     relationships: {
-      webhook: UpRelationship<"webhooks">;
-      transaction: UpRelationship<"transactions">;
+      webhook: Relationship<"webhooks">;
+      transaction: Relationship<"transactions">;
     };
+  };
+}
+
+export interface UpMoneyObject {
+  currencyCode: string;
+  value: string;
+  valueInBaseUnits: string;
+}
+
+export interface UpTransaction {
+  type: "transactions";
+  id: string;
+  attributes: {
+    status: UpTransactionStatus;
+    rawText?: string;
+    description: string;
+    message?: string;
+    holdInfo?: {
+      amount: UpMoneyObject;
+      foreignAmount?: UpMoneyObject;
+    };
+    roundUp?: {
+      amount: UpMoneyObject;
+      boostPortion?: UpMoneyObject;
+    };
+    cashback?: {
+      description: string;
+      amount: UpMoneyObject;
+    };
+    amount: UpMoneyObject;
+    foreignAmount?: UpMoneyObject;
+    settledAt?: string;
+    createdAt?: string;
+  };
+  relationships: {
+    account: Relationship<"accounts">;
+    category: Relationship<"categories">;
+    parentCategory: Relationship<"categories">;
+    tags: MultiRelationship<"tags">;
+  };
+  links?: {
+    self: string;
   };
 }
