@@ -2,9 +2,11 @@ import { NowRequest, NowResponse } from "@vercel/node";
 import { json } from "micro";
 import { UpWebhookEvent } from ".";
 import { getTransaction, sendWebhook } from "./requests";
+import util from "util";
 
 export default async (req: NowRequest, res: NowResponse) => {
   const body = (await json(req)) as UpWebhookEvent;
+  console.log(util.inspect(body.data.relationships, { depth: 10 }));
   const transId = body.data.relationships.transaction.data.id;
   const transaction = await getTransaction(transId);
 
