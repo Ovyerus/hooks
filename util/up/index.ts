@@ -15,3 +15,34 @@ export async function isSecureReq(req: NowRequest) {
 
   return signature === hmac;
 }
+
+export type UpWebhookEventType =
+  | "TRANSACTION_CREATED"
+  | "TRANSACTION_SETTLED"
+  | "TRANSACTION_DELETED"
+  | "PING";
+
+export interface UpRelationship<T extends string = string> {
+  data: {
+    type: T;
+    id: string;
+  };
+  links?: {
+    related: string;
+  };
+}
+
+export interface UpWebhookEvent {
+  data: {
+    type: string;
+    id: string;
+    attributes: {
+      eventType: UpWebhookEventType;
+      createdAt: string;
+    };
+    relationships: {
+      webhook: UpRelationship<"webhooks">;
+      transaction: UpRelationship<"transactions">;
+    };
+  };
+}
