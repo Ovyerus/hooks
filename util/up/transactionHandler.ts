@@ -2,7 +2,6 @@ import { NowRequest, NowResponse } from "@vercel/node";
 import { json } from "micro";
 import { UpWebhookEvent } from ".";
 import { getTransaction, sendWebhook } from "./requests";
-import util from "util";
 
 export default async (req: NowRequest, res: NowResponse) => {
   const body = (await json(req)) as UpWebhookEvent;
@@ -10,7 +9,9 @@ export default async (req: NowRequest, res: NowResponse) => {
   const { data: transaction } = await getTransaction(transId);
 
   const { status, description } = transaction.attributes;
-  const tags = transaction.relationships.tags.data.map((t) => t.id).join(", ");
+  const tags =
+    transaction.relationships.tags.data.map((t) => t.id).join(", ") ||
+    "No tags";
 
   console.log(transaction.id, description, status);
   if (status === "HELD" || description === "Round Up") return res.send("OK");
