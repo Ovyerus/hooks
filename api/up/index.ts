@@ -3,7 +3,7 @@ import { json } from "micro";
 
 import { isSecureReq, UpWebhookEvent } from "../../util/up";
 import pingHandler from "../../util/up/pingHandler";
-import transactionSettledHandler from "../../util/up/transactionSettledHandler";
+import transactionHandler from "../../util/up/transactionHandler";
 
 export default async (req: NowRequest, res: NowResponse) => {
   if (req.method === "GET") return res.status(200).send("OK");
@@ -19,7 +19,8 @@ export default async (req: NowRequest, res: NowResponse) => {
     case "PING":
       return pingHandler(req, res);
     case "TRANSACTION_SETTLED":
-      return transactionSettledHandler(req, res);
+    case "TRANSACTION_CREATED":
+      return transactionHandler(req, res);
     default:
       console.log(`dunno ${type}`);
       return res.send("OK");
