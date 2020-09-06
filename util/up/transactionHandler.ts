@@ -33,7 +33,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const fullCategory = await getUpCategory(transCategory.id);
   const categoryString: string =
-    categoryMapping[fullCategory.data.id] ?? fullCategory.data.attributes.name;
+    categoryMapping[fullCategory.data.id] || fullCategory.data.attributes.name;
   let supplier: string, category: string;
 
   const [categories, suppliers] = await Promise.all([
