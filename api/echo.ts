@@ -16,6 +16,8 @@ export default async (req: NowRequest, res: NowResponse) => {
   const { query, method } = req;
   const resp = { status: 200, body, rawBody, query, method };
 
+  console.log(JSON.stringify(resp));
+
   if (req.query.formatted == null)
     res.json({ status: 200, body, rawBody, query, method });
   else {
