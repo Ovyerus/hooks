@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "bent": "^7.3.10",
+    "date-fns": "^2.16.1",
     "micro": "^9.3.4"
   }
 }

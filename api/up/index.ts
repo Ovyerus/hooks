@@ -1,7 +1,8 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 import { json } from "micro";
 
-import { isSecureReq, UpWebhookEvent } from "../../util/up";
+import { isSecureReq } from "../../util/up";
+import { UpWebhookEvent } from "../../util/up/types";
 import pingHandler from "../../util/up/pingHandler";
 import transactionHandler from "../../util/up/transactionHandler";
 

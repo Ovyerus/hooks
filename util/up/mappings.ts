@@ -1,0 +1,27 @@
+// Up category: Rounded category
+export const categoryMapping = {
+  "games-and-software": "Software",
+  "car-insurance-and-maintenance": "Car expenses",
+  booze: "Client Meals & Entertainment",
+  cycling: "Travel",
+  "homeware-and-appliances": "Computer Hardware", // Maybe not
+  fuel: "Car expenses",
+  internet: "Phone & Internet",
+  parking: "Car expenses",
+  transport: "Travel",
+  "holidays-and-travel": "Travel",
+  "public-transports": "Travel",
+  "home-insurance-and-rates": "Insurance",
+  "car-repayments": "Car expenses",
+  "health-and-medical": "Insurance",
+  "pubs-and-bars": "Client Meals & Entertainment",
+  "rent-and-mortgage": "Rent",
+  "taxis-and-share-cars": "Travel",
+  "restaurants-and-cafes": "Client Meals & Entertainment",
+  "toll-roads": "Car expenses",
+  utilities: "Utilities",
+  "life-admin": "Accounting & Legal",
+  "mobile-phone": "Phone & Internet",
+  "news-magazines-and-books": "Office Supplies",
+  technology: "Computer Hardware",
+};
