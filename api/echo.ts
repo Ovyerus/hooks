@@ -1,6 +1,6 @@
 import { text } from "micro";
 
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const tryFn = (fn) => {
   try {
@@ -10,7 +10,7 @@ const tryFn = (fn) => {
   }
 };
 
-export default async (req: NowRequest, res: NowResponse) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
   const rawBody = await text(req);
   const body = await tryFn(() => JSON.parse(rawBody));
   const { query, method } = req;

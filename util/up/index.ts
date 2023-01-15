@@ -1,9 +1,9 @@
-import { NowRequest } from "@vercel/node";
+import { VercelRequest } from "@vercel/node";
 import { text } from "micro";
 
 import crypto from "crypto";
 
-export async function isSecureReq(req: NowRequest) {
+export async function isSecureReq(req: VercelRequest) {
   const body = await text(req);
   const secret = process.env.UP_WEBHOOK_SECRET_KEY;
   const signature = req.headers["x-up-authenticity-signature"];

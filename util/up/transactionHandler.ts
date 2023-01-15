@@ -1,4 +1,4 @@
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 import { parseJSON } from "date-fns";
 import { json } from "micro";
 import { categoryMapping } from "./mappings";
@@ -13,7 +13,7 @@ import {
   getUpCategory,
 } from "./requests";
 
-export default async (req: NowRequest, res: NowResponse) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
   const body = (await json(req)) as UpWebhookEvent;
   const transId = body.data.relationships.transaction.data.id;
   const { data: transaction } = await getTransaction(transId);

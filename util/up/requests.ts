@@ -69,5 +69,6 @@ export const createSupplier = (name: string): Promise<RoundedSupplier> =>
 export const getTransaction = (id: string): Promise<UpTransactionResponse> => {
   return getUp(`transactions/${id}`) as any;
 };
+
 export const getUpCategory = (id: string): Promise<UpCategory> =>
   getUp(`categories/${id}`) as any;

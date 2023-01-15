@@ -1,4 +1,4 @@
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 import { json } from "micro";
 
 import { isSecureReq } from "../../util/up";
@@ -6,7 +6,7 @@ import { UpWebhookEvent } from "../../util/up/types";
 import pingHandler from "../../util/up/pingHandler";
 import transactionHandler from "../../util/up/transactionHandler";
 
-export default async (req: NowRequest, res: NowResponse) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
   if (req.method === "GET") return res.status(200).send("OK");
 
   if (!(await isSecureReq(req)))
